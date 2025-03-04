@@ -20,7 +20,7 @@ try {
     echo $library->getItems();
 
     echo '<br>Borrowing \'The Great Gatsby\'...<br><br>';
-    $book->borrow();
+    $book->borrowItem();
 
     echo '<strong>Updated Library Items:</strong><br>';
     echo $library->getItems();

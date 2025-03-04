@@ -2,18 +2,12 @@
 
 require_once 'LibraryItem.php';
 
-Class Magazine extends LibraryItem
+class Magazine extends LibraryItem
 {
     private int $issueNumber;
     public string $publisher;
 
-    public function __construct(
-        string $title,
-        string $author,
-        int $publicationYear,
-        int $issueNumber,
-        string $publisher
-    )
+    public function __construct(string $title, string $author, int $publicationYear, int $issueNumber, string $publisher)
     {
         parent::__construct($title, $author, $publicationYear);
         if ($this->validateIssueNumber($issueNumber)) {
@@ -29,7 +23,6 @@ Class Magazine extends LibraryItem
         if ($property === 'issueNumber') {
             return $this->issueNumber;
         }
-
         throw new Exception("Property '$property' does not exist.");
     }
 
@@ -48,6 +41,6 @@ Class Magazine extends LibraryItem
 
     public function getDetails(): string
     {
-        return 'Magazine: ' . parent::getDetails() . " (Issue {$this->issueNumber}) - Publisher: {$this->publisher}";
+        return "Magazine: {$this->title} by {$this->author} ({$this->publicationYear}) - Issue {$this->issueNumber}, Publisher: {$this->publisher}";
     }
 }

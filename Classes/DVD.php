@@ -1,19 +1,15 @@
 <?php
 
 require_once 'LibraryItem.php';
+require_once 'Interfaces/Borrowable.php';
 
-Class DVD extends LibraryItem
+class DVD extends LibraryItem implements Borrowable
 {
     private int $duration;
     public string $format;
+    private bool $isBorrowed = false;
 
-    public function __construct(
-        string $title,
-        string $author,
-        int $publicationYear,
-        int $duration,
-        string $format
-    )
+    public function __construct(string $title, string $author, int $publicationYear, int $duration, string $format)
     {
         parent::__construct($title, $author, $publicationYear);
         if ($this->validateDuration($duration)) {
@@ -29,7 +25,6 @@ Class DVD extends LibraryItem
         if ($property === 'duration') {
             return $this->duration;
         }
-
         throw new Exception("Property '$property' does not exist.");
     }
 
@@ -46,8 +41,26 @@ Class DVD extends LibraryItem
         return $duration > 0;
     }
 
+    public function borrowItem(): string
+    {
+        if ($this->isBorrowed) {
+            return 'This item is already borrowed.';
+        }
+        $this->isBorrowed = true;
+        return "You have borrowed: {$this->title}.";
+    }
+
+    public function returnItem(): string
+    {
+        if (!$this->isBorrowed) {
+            return 'This item was not borrowed.';
+        }
+        $this->isBorrowed = false;
+        return "You have returned: {$this->title}.";
+    }
+
     public function getDetails(): string
     {
-        return 'DVD: ' . parent::getDetails() . " - Duration: {$this->duration} mins, Format: {$this->format}";
+        return "DVD: {$this->title} by {$this->author} ({$this->publicationYear}) - Duration: {$this->duration} mins, Format: {$this->format}";
     }
 }

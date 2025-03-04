@@ -2,7 +2,7 @@
 
 require_once 'LibraryItem.php';
 
-class Library
+Class Library
 {
     private array $items = [];
 
