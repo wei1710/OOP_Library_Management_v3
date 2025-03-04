@@ -7,7 +7,13 @@ class Magazine extends LibraryItem
     private int $issueNumber;
     public string $publisher;
 
-    public function __construct(string $title, string $author, int $publicationYear, int $issueNumber, string $publisher)
+    public function __construct(
+        string $title, 
+        string $author, 
+        int $publicationYear, 
+        int $issueNumber, 
+        string $publisher
+    )
     {
         parent::__construct($title, $author, $publicationYear);
         if ($this->validateIssueNumber($issueNumber)) {

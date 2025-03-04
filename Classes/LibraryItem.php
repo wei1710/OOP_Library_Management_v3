@@ -6,7 +6,11 @@ abstract class LibraryItem
     public string $author;
     protected int $publicationYear;
 
-    public function __construct(string $title, string $author, int $publicationYear)
+    public function __construct(
+        string $title, 
+        string $author, 
+        int $publicationYear
+    )
     {
         $this->title = $title;
         $this->author = $author;

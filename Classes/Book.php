@@ -9,7 +9,13 @@ class Book extends LibraryItem implements Borrowable
     public int $pages;
     private bool $isBorrowed = false;
 
-    public function __construct(string $title, string $author, int $publicationYear, string $isbn, int $pages)
+    public function __construct(
+        string $title, 
+        string $author, 
+        int $publicationYear, 
+        string $isbn, 
+        int $pages
+    )
     {
         parent::__construct($title, $author, $publicationYear);
         if ($this->validateIsbn($isbn)) {

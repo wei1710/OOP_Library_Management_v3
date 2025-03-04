@@ -9,7 +9,13 @@ class DVD extends LibraryItem implements Borrowable
     public string $format;
     private bool $isBorrowed = false;
 
-    public function __construct(string $title, string $author, int $publicationYear, int $duration, string $format)
+    public function __construct(
+        string $title, 
+        string $author, 
+        int $publicationYear, 
+        int $duration, 
+        string $format
+    )
     {
         parent::__construct($title, $author, $publicationYear);
         if ($this->validateDuration($duration)) {
